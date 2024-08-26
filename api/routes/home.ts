@@ -1,10 +1,9 @@
-const express = require("express")
+const express = require("express");
+const routerHome = express.Router();
 
-const router = express.Router();
-
-router.route("/home")
+routerHome.route("/home")
     .get((req, res) => {
         res.send("YAY")
     })
 
-module.exports = router
+module.exports = routerHome
