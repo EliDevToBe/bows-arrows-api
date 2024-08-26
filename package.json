@@ -16,6 +16,7 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@types/node": "^22.5.0"
+    "@types/node": "^22.5.0",
+    "helmet": "^7.1.0"
   }
 }

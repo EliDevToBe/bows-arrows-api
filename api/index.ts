@@ -1,7 +1,12 @@
 // ==== Express necessities ====
 const express = require("express");
 const app = express();
-const PORT = 8080;
+const PORT = 8000;
+// =============================
+
+// ===== Other imports =====
+const helmet = require("helmet");
+// =========================
 
 // ==== DB Necessities ====
 const pg = require("pg");
@@ -17,6 +22,7 @@ pool.on('error', (err, client) => {
     console.error('Unexpected error on idle client', err)
     process.exit(-1)
 });
+// ========================
 
 // ==== Routes import =====
 const homeRouter = require("./routes/home");
@@ -24,17 +30,28 @@ const homeRouter = require("./routes/home");
 
 app.get("/", async (req, res) => {
 
-    const client = await pool.connect();
-    const resultat = await client.query("SELECT * FROM arrows WHERE arrow_id = 1")
+    // const client = await pool.connect();
+    // const resultat = await client.query("SELECT * FROM arrows WHERE arrow_id = 1")
 
-    res.json(resultat.rows);
+    // res.json(resultat.rows);
 
-    client.release();
+    // client.release();
+
+
+
 });
 
-app.use(homeRouter);
+// ===== MISC Middlewares =====
+app.use(helmet);
+// reduce fingerprinting express
+app.disable('x-powered-by');
+// ============================
 
-app.listen(PORT);
-console.log(`Server ready on port ${PORT}.`)
+// ===== Router middlewares =====
+app.use(homeRouter);
+// ==============================
+
+// console.log(`Server ready on port ${PORT}.`)
+// app.listen(PORT);
 
 module.exports = app;
