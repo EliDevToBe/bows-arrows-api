@@ -10,6 +10,7 @@ import helmet from 'helmet';
 // ==== Routes import =====
 import { homeRouter } from "./routes/home";
 import { arrowsRouter } from "./routes/arrows";
+import { brandsRouter } from "./routes/brands";
 // ========================
 
 // ===== MISC Middlewares =====
@@ -24,7 +25,8 @@ app.disable('x-powered-by');
 
 // ===== Router middlewares =====
 app.use(homeRouter);
-app.use(arrowsRouter)
+app.use(arrowsRouter);
+app.use(brandsRouter);
 // ==============================
 
 

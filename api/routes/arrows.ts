@@ -16,6 +16,9 @@ pool.on('error', (err, client) => {
     console.error('Unexpected error on idle client', err)
     process.exit(-1)
 });
+// pool.on("release", (err, client) => {
+//     console.log("Released")
+// })
 // ===== =====
 
 arrowsRouter.route('/arrows')
@@ -24,7 +27,7 @@ arrowsRouter.route('/arrows')
         const client = await pool.connect();
 
         try {
-            const resultat = await client.query("SELECT arrows.arrow_id AS id, arrows.name AS model, brands.name AS brand, brands.brand_id AS brandid, discipline, material, material_quality AS quality, gpi_tolerance, straightness_tolerance, spine_tolerance FROM arrows  LEFT JOIN brands ON arrows.brand_id = brands.brand_id")
+            const resultat = await client.query("SELECT arrows.arrow_id AS id, arrows.name AS name, brands.name AS brand, brands.brand_id AS brandid, discipline, material, material_quality AS quality, gpi_tolerance, straightness_tolerance, spine_tolerance FROM arrows  LEFT JOIN brands ON arrows.brand_id = brands.brand_id")
 
             const path = req.path.slice(-1).includes("/") ? req.path : req.path + "/";
 
@@ -73,7 +76,7 @@ arrowsRouter.route('/arrows')
             res.json(resultat.rows);
 
         } catch (error) {
-            res.sendStatus(500);
+            res.sendStatus(500).send(error);
         }
         client.release();
     })
@@ -96,7 +99,7 @@ arrowsRouter.route("/arrows/:id")
             const id = parseInt(req.params.id);
 
             const resultat = await client.query(
-                "SELECT arrows.arrow_id AS id, arrows.name AS model, brands.brand_id AS brandid, brands.name AS brand, discipline, material, material_quality AS quality, gpi_tolerance, straightness_tolerance, spine_tolerance FROM arrows LEFT JOIN brands ON arrows.brand_id = brands.brand_id WHERE arrows.arrow_id = $1"
+                "SELECT arrows.arrow_id AS id, arrows.name AS name, brands.brand_id AS brandid, brands.name AS brand, discipline, material, material_quality AS quality, gpi_tolerance, straightness_tolerance, spine_tolerance FROM arrows LEFT JOIN brands ON arrows.brand_id = brands.brand_id WHERE arrows.arrow_id = $1"
                 , [id]);
 
             const arrow = resultat.rows[0];
@@ -151,13 +154,24 @@ arrowsRouter.route("/arrows/:id/spines")
         const client = await pool.connect();
 
         try {
-            const id = parseInt(req.params.id);
+            const arrowId = parseInt(req.params.id);
 
-            const resultat = await client.query("SELECT variant_id AS id, arrow_id AS from_arrow, spine, inner_diam AS inner_diameter, outer_diam AS outer_diameter, length, gpi, points FROM variants WHERE arrow_id = $1 ORDER BY spine DESC",
-                [id]
+            const spinesArray = await client.query("SELECT variant_id AS id, spine, inner_diam AS inner_diameter, outer_diam AS outer_diameter, length, gpi, points FROM variants WHERE arrow_id = $1",
+                [arrowId]
             );
 
-            res.json(resultat.rows)
+            // Retrieve arrow name and include URL
+            const arrow = await client.query("SELECT name FROM arrows WHERE arrow_id = $1",
+                [arrowId]
+            );
+            const arrowUrl = req.protocol + "://" + req.headers.host
+                + "/arrows/" + arrowId;
+
+            const response = {
+                arrow: { name: arrow.rows[0].name, url: arrowUrl },
+                spines: spinesArray.rows
+            }
+            res.json(response);
 
         } catch (error) {
             res.sendStatus(500).send(error);

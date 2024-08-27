@@ -1,7 +1,7 @@
 import express from "express"
 export const homeRouter = express.Router();
 
-homeRouter.route("/home")
+homeRouter.route("/")
     .get((req, res) => {
-        res.send("YAY")
+        res.send("TO DO PAGE DE DOCU")
     })
