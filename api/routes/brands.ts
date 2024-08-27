@@ -18,7 +18,7 @@ pool.on('error', (err, client) => {
 });
 // ===== =====
 
-brandsRouter.route("/brands")
+brandsRouter.route("/api/brands")
     .get(async (req, res, next) => {
 
         const client = await pool.connect();
@@ -38,7 +38,7 @@ brandsRouter.route("/brands")
                     const url = req.protocol
                         + "://"
                         + req.headers.host
-                        + "/arrows/" + el.id
+                        + "/api/arrows/" + el.id
 
                     return url;
                 });
@@ -69,7 +69,7 @@ brandsRouter.param('id', (req, res, next, value) => {
     }
 })
 
-brandsRouter.route("/brands/:id")
+brandsRouter.route("/api/brands/:id")
     .get(async (req, res, next) => {
 
         const client = await pool.connect();
@@ -88,7 +88,7 @@ brandsRouter.route("/brands/:id")
                 const url = req.protocol
                     + "://"
                     + req.headers.host
-                    + "/arrows/" + el.id
+                    + "/api/arrows/" + el.id
 
                 return url;
             });

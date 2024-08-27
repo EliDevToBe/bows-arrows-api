@@ -21,7 +21,7 @@ pool.on('error', (err, client) => {
 // })
 // ===== =====
 
-arrowsRouter.route('/arrows')
+arrowsRouter.route('/api/arrows')
     .get(async (req, res) => {
 
         const client = await pool.connect();
@@ -90,7 +90,7 @@ arrowsRouter.param('id', (req, res, next, value) => {
     }
 })
 
-arrowsRouter.route("/arrows/:id")
+arrowsRouter.route("/api/arrows/:id")
     .get(async (req, res) => {
 
         const client = await pool.connect();
@@ -114,12 +114,12 @@ arrowsRouter.route("/arrows/:id")
             // Adding brand URL
             const brandUrl = req.protocol
                 + "://" + req.headers.host
-                + "/brands/" + arrow.brandid;
+                + "/api/brands/" + arrow.brandid;
             arrow.brand = {
                 name: arrow.brand,
                 url: brandUrl
             };
-            delete arrow.brandid
+            delete arrow.brandid;
 
             // Grouping all tolerances
             const tolerances = {
@@ -149,7 +149,7 @@ arrowsRouter.route("/arrows/:id")
         client.release();
     })
 
-arrowsRouter.route("/arrows/:id/spines")
+arrowsRouter.route("/api/arrows/:id/spines")
     .get(async (req, res) => {
         const client = await pool.connect();
 
@@ -164,9 +164,9 @@ arrowsRouter.route("/arrows/:id/spines")
             const arrow = await client.query("SELECT name FROM arrows WHERE arrow_id = $1",
                 [arrowId]
             );
-            const arrowUrl = req.protocol + "://" + req.headers.host
-                + "/arrows/" + arrowId;
 
+            const path = req.path.slice(0, -"spines".length - 1);
+            const arrowUrl = req.protocol + "://" + req.headers.host + path;
             const response = {
                 arrow: { name: arrow.rows[0].name, url: arrowUrl },
                 spines: spinesArray.rows

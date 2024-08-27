@@ -1,6 +1,7 @@
 // ==== Express necessities ====
 import express from "express"
 const app = express();
+import path from "path";
 // =============================
 
 // ===== Other imports =====
@@ -27,6 +28,7 @@ app.disable('x-powered-by');
 app.use(homeRouter);
 app.use(arrowsRouter);
 app.use(brandsRouter);
+app.use(express.static(path.join(__dirname, "public")));
 // ==============================
 
 
