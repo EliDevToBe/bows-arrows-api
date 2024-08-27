@@ -1,8 +1,9 @@
-const cacheMiddleWare = (duration) => {
+export const cacheMiddleWare = (duration) => {
     console.log("mise à 0")
-    const cacheMap = new Map();
 
     return (req, res, next) => {
+        const cacheMap = new Map();
+
         const key = req.originalUrl || req.url;
         const cachedResponse = cacheMap.get(key);
         console.log(cacheMap);
@@ -62,6 +63,3 @@ const cacheMiddleWare = (duration) => {
         next();
     };
 };
-
-
-module.exports = cacheMiddleWare;

@@ -1,5 +1,5 @@
-const express = require("express")
-let routerArrows = express.Router();
+import express from "express"
+export const arrowsRouter = express.Router();
 
 require("dotenv").config();
 
@@ -18,7 +18,7 @@ pool.on('error', (err, client) => {
 });
 // ===== =====
 
-routerArrows.route('/arrows')
+arrowsRouter.route('/arrows')
     .get(async (req, res) => {
 
         const client = await pool.connect();
@@ -79,7 +79,7 @@ routerArrows.route('/arrows')
     })
 
 // CODE TO VALIDATE ID PARAM
-routerArrows.param('id', (req, res, next, value) => {
+arrowsRouter.param('id', (req, res, next, value) => {
     if (value == parseInt(value)) {
         next();
     } else {
@@ -87,11 +87,7 @@ routerArrows.param('id', (req, res, next, value) => {
     }
 })
 
-routerArrows.route("/arrows/:id")
-    // .all((req, res, next) => {
-    //     res.set('Cache-Control', 'public, max-age=3600');
-    //     next();
-    // })
+arrowsRouter.route("/arrows/:id")
     .get(async (req, res) => {
 
         const client = await pool.connect();
@@ -150,7 +146,7 @@ routerArrows.route("/arrows/:id")
         client.release();
     })
 
-routerArrows.route("/arrows/:id/spines")
+arrowsRouter.route("/arrows/:id/spines")
     .get(async (req, res) => {
         const client = await pool.connect();
 
@@ -169,5 +165,3 @@ routerArrows.route("/arrows/:id/spines")
 
         client.release();
     })
-
-module.exports = routerArrows;

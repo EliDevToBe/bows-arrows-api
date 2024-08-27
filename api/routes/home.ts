@@ -1,9 +1,7 @@
-const express = require("express");
-const routerHome = express.Router();
+import express from "express"
+export const homeRouter = express.Router();
 
-routerHome.route("/home")
+homeRouter.route("/home")
     .get((req, res) => {
         res.send("YAY")
     })
-
-module.exports = routerHome
