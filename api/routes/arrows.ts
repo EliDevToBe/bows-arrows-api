@@ -42,7 +42,7 @@ arrowsRouter.route('/api/arrows')
 
                 // Adding brand URL
                 const brandUrl = req.protocol
-                    + "://" + req.headers.host
+                    + "s://" + req.headers.host
                     + "/brands/" + arrow.brandid;
                 arrow.brand = {
                     name: arrow.brand,
@@ -63,7 +63,7 @@ arrowsRouter.route('/api/arrows')
 
                 // Adding spine URL
                 const spineUrl = req.protocol
-                    + "://"
+                    + "s://"
                     + req.headers.host
                     + path
                     + arrow.id
@@ -113,7 +113,7 @@ arrowsRouter.route("/api/arrows/:id")
 
             // Adding brand URL
             const brandUrl = req.protocol
-                + "://" + req.headers.host
+                + "s://" + req.headers.host
                 + "/api/brands/" + arrow.brandid;
             arrow.brand = {
                 name: arrow.brand,
@@ -134,7 +134,7 @@ arrowsRouter.route("/api/arrows/:id")
 
             // Adding spine URL
             const path = req.path.slice(-1).includes("/") ? req.path.slice(0, -1) : req.path;
-            const spineUrl = req.protocol + "://" + req.headers.host + path + "/spines";
+            const spineUrl = req.protocol + "s://" + req.headers.host + path + "/spines";
             arrow.spines = { url: spineUrl };
 
             // TEST CACHING
@@ -166,7 +166,7 @@ arrowsRouter.route("/api/arrows/:id/spines")
             );
 
             const path = req.path.slice(0, -"spines".length - 1);
-            const arrowUrl = req.protocol + "://" + req.headers.host + path;
+            const arrowUrl = req.protocol + "s://" + req.headers.host + path;
             const response = {
                 arrow: { name: arrow.rows[0].name, url: arrowUrl },
                 spines: spinesArray.rows

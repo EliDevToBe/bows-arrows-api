@@ -36,7 +36,7 @@ brandsRouter.route("/api/brands")
                 // Adding all dependant arrows
                 const arrowsUrls = arrowsIdArray.rows.map((el) => {
                     const url = req.protocol
-                        + "://"
+                        + "s://"
                         + req.headers.host
                         + "/api/arrows/" + el.id
 
@@ -46,7 +46,7 @@ brandsRouter.route("/api/brands")
 
                 // adding URL for this brand
                 const path = req.path.slice(-1).includes("/") ? req.path : req.path + "/"
-                brand.url = req.protocol + "://"
+                brand.url = req.protocol + "s://"
                     + req.headers.host + path
                     + brand.id;
 
@@ -86,7 +86,7 @@ brandsRouter.route("/api/brands/:id")
             );
             const arrowsUrls = arrowsIdArray.rows.map((el) => {
                 const url = req.protocol
-                    + "://"
+                    + "s://"
                     + req.headers.host
                     + "/api/arrows/" + el.id
 

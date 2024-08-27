@@ -9,7 +9,7 @@ homeRouter.route("/")
 homeRouter.route("/api")
     .all((req, res) => {
         res.json({
-            brands: req.protocol + "://" + req.headers.host + "/api/brands",
-            arrows: req.protocol + "://" + req.headers.host + "/api/arrows"
+            brands: req.protocol + "s://" + req.headers.host + "/api/brands",
+            arrows: req.protocol + "s://" + req.headers.host + "/api/arrows"
         })
     })
