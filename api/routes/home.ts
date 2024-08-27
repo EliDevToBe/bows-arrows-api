@@ -3,7 +3,6 @@ export const homeRouter = express.Router();
 
 homeRouter.route("/")
     .all((req, res) => {
-        // res.send("TO DO PAGE DE DOCU")
         res.redirect("/documentation.html");
     })
 
