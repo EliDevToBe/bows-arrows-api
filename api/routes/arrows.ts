@@ -16,9 +16,6 @@ pool.on('error', (err, client) => {
     console.error('Unexpected error on idle client', err)
     process.exit(-1)
 });
-// pool.on("release", (err, client) => {
-//     console.log("Released")
-// })
 // ===== =====
 
 arrowsRouter.route('/api/arrows')
@@ -76,9 +73,11 @@ arrowsRouter.route('/api/arrows')
             res.json(resultat.rows);
 
         } catch (error) {
-            res.sendStatus(500).send(error);
+            res.sendStatus(500);
         }
+
         client.release();
+        return
     })
 
 // CODE TO VALIDATE ID PARAM
@@ -86,7 +85,8 @@ arrowsRouter.param('id', (req, res, next, value) => {
     if (value == parseInt(value)) {
         next();
     } else {
-        res.sendStatus(400).send();
+        res.sendStatus(400);
+        return
     }
 })
 
@@ -144,9 +144,11 @@ arrowsRouter.route("/api/arrows/:id")
             res.json(arrow);
             // console.log(res)
         } catch (error) {
-            res.sendStatus(500).send(error);
+            res.sendStatus(500);
         }
+
         client.release();
+        return
     })
 
 arrowsRouter.route("/api/arrows/:id/spines")
@@ -174,8 +176,9 @@ arrowsRouter.route("/api/arrows/:id/spines")
             res.json(response);
 
         } catch (error) {
-            res.sendStatus(500).send(error);
+            res.sendStatus(500);
         }
 
         client.release();
+        return
     })

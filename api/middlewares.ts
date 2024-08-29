@@ -63,3 +63,19 @@ export const cacheMiddleWare = (duration) => {
         next();
     };
 };
+
+export function onlyGetMethodAllowed() {
+
+    return (req, res, next) => {
+        if (req.method != "GET") {
+            res.status(405);
+            res.json({
+                oops: 'There is nothing here.',
+                method: req.method,
+                message: 'Method Not Allowed'
+            })
+            return
+        }
+        next();
+    }
+}

@@ -55,17 +55,20 @@ brandsRouter.route("/api/brands")
             res.json(resultat.rows);
 
         } catch (error) {
-            res.sendStatus(500).send();
+            res.sendStatus(500)
         }
 
         client.release();
+        return
     })
+
 
 brandsRouter.param('id', (req, res, next, value) => {
     if (value == parseInt(value)) {
         next();
     } else {
-        res.sendStatus(400).send();
+        res.sendStatus(400);
+        return
     }
 })
 
@@ -97,8 +100,9 @@ brandsRouter.route("/api/brands/:id")
             res.json(brand);
 
         } catch (error) {
-            res.sendStatus(500).send(error);
+            res.sendStatus(500);
         }
 
         client.release();
+        return
     })

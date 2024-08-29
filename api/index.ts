@@ -6,6 +6,7 @@ import path from "path";
 
 // ===== Other imports =====
 import helmet from 'helmet';
+import { onlyGetMethodAllowed } from "./middlewares";
 // =========================
 
 // ==== Routes import =====
@@ -18,6 +19,7 @@ import { brandsRouter } from "./routes/brands";
 app.use(helmet());
 // reduce fingerprinting express
 app.disable('x-powered-by');
+
 // --------------- TESTING CACHING ------------------
 // const createCache = require("./middlewares");
 // const cache = createCache(300)
@@ -25,6 +27,7 @@ app.disable('x-powered-by');
 // ============================
 
 // ===== Router middlewares =====
+app.use(onlyGetMethodAllowed())
 app.use(homeRouter);
 app.use(arrowsRouter);
 app.use(brandsRouter);
