@@ -48,11 +48,10 @@ brandsRouter.route("/api/brands")
                 brand.arrows = arrowsUrls;
 
                 // adding URL for this brand
-                const path = req.path.slice(-1).includes("/") ? req.path : req.path + "/"
-                brand.url = req.protocol + "s://"
-                    + req.headers.host + path
-                    + brand.id;
-
+                // const path = req.path.slice(-1).includes("/") ? req.path : req.path + "/"
+                // brand.url = req.protocol + "s://"
+                //     + req.headers.host + path
+                //     + brand.id;
 
             }
 
@@ -106,9 +105,9 @@ brandsRouter.route("/api/brands/:id")
             brand.arrows = arrowsUrls;
 
             // adding URL for this brand
-            const path = req.path.slice(-1).includes("/") ? req.path : req.path + "/"
-            brand.url = req.protocol + "s://"
-                + req.headers.host + path.slice(0, -1);
+            // const path = req.path.slice(-1).includes("/") ? req.path : req.path + "/"
+            // brand.url = req.protocol + "s://"
+            //     + req.headers.host + path.slice(0, -1);
 
             res.json(brand);
 
