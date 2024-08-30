@@ -66,7 +66,7 @@ arrowsRouter.route('/api/arrows')
                     + arrow.id
                     + "/spines";
 
-                arrow.spines = { url: spineUrl }
+                arrow.spinesUrl = spineUrl;
             }
 
             // Final response
@@ -135,7 +135,7 @@ arrowsRouter.route("/api/arrows/:id")
             // Adding spine URL
             const path = req.path.slice(-1).includes("/") ? req.path.slice(0, -1) : req.path;
             const spineUrl = req.protocol + "s://" + req.headers.host + path + "/spines";
-            arrow.spines = { url: spineUrl };
+            arrow.spinesUrl = spineUrl;
 
             // TEST CACHING
 

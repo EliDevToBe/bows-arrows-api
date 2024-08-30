@@ -32,6 +32,9 @@ brandsRouter.route("/api/brands")
                 const arrowsIdArray = await client.query("SELECT arrow_id AS id FROM arrows WHERE brand_id = $1",
                     [brand.id]
                 )
+                // Changing creation_date
+                brand.creationDate = brand.creation_date;
+                delete brand.creation_date;
 
                 // Adding all dependant arrows
                 const arrowsUrls = arrowsIdArray.rows.map((el) => {
@@ -49,6 +52,7 @@ brandsRouter.route("/api/brands")
                 brand.url = req.protocol + "s://"
                     + req.headers.host + path
                     + brand.id;
+
 
             }
 
@@ -83,6 +87,10 @@ brandsRouter.route("/api/brands/:id")
             );
             const brand = resultat.rows[0];
 
+            // Changing creation_date
+            brand.creationDate = brand.creation_date;
+            delete brand.creation_date;
+
             // Adding dependant arrows URL
             const arrowsIdArray = await client.query("SELECT arrow_id AS id FROM arrows WHERE brand_id = $1",
                 [brand.id]
@@ -96,6 +104,11 @@ brandsRouter.route("/api/brands/:id")
                 return url;
             });
             brand.arrows = arrowsUrls;
+
+            // adding URL for this brand
+            const path = req.path.slice(-1).includes("/") ? req.path : req.path + "/"
+            brand.url = req.protocol + "s://"
+                + req.headers.host + path.slice(0, -1);
 
             res.json(brand);
 
