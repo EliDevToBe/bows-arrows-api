@@ -1,7 +1,6 @@
 import express from "express"
 import path from "path";
 export const homeRouter = express.Router();
-import { myCache } from "..";
 
 homeRouter.route("/")
     .get((req, res) => {
@@ -24,9 +23,6 @@ homeRouter.route("/api")
             brands: req.protocol + "s://" + req.headers.host + "/api/brands",
             arrows: req.protocol + "s://" + req.headers.host + "/api/arrows"
         };
-
-        myCache.set(req.originalUrl, response);
-        console.log("caching")
 
         res.json(response);
         return

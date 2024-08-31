@@ -17,18 +17,7 @@ import { brandsRouter } from "./routes/brands";
 
 // ===== MISC Middlewares =====
 // --------------- TESTING CACHING ------------------
-const NodeCache = require("node-cache");
-export const myCache = new NodeCache({ stdTTl: 120, checkperiod: 300 });
-app.use((req, res, next) => {
-    const key = req.originalUrl;
-    if (myCache.has(key)) {
-        console.log("USING cache")
-        res.send(myCache.get(key));
-        return
-    } else {
-        next();
-    }
-})
+// No functionnality at the moment :'(
 // ----------------------------------------------
 app.use(helmet());
 // reduce fingerprinting express
