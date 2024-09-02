@@ -12,7 +12,7 @@ homeRouter.route("/")
             maxAge: 1000 * 60 * 1
         }
 
-        res.sendFile("documentation.html", options);
+        res.sendFile("index.html", options);
         return
     })
 
