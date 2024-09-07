@@ -6,7 +6,7 @@ import path from "path";
 
 // ===== Other imports =====
 import helmet from 'helmet';
-import { onlyGetMethodAllowed } from "./middlewares";
+import { onlyGetMethodAllowed } from "./utils/onlyGet";
 // =========================
 
 // ==== Routes import =====

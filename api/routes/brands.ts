@@ -67,7 +67,8 @@ brandsRouter.route("/api/brands")
 
 
 brandsRouter.param('id', (req, res, next, value) => {
-    if (value == parseInt(value)) {
+    if (value == parseInt(value)
+        && parseInt(value) >= 0 && parseInt(value) <= 10) {
         next();
     } else {
         res.sendStatus(400);

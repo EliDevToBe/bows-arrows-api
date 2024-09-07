@@ -82,7 +82,8 @@ arrowsRouter.route('/api/arrows')
 
 // CODE TO VALIDATE ID PARAM
 arrowsRouter.param('id', (req, res, next, value) => {
-    if (value == parseInt(value)) {
+    if (value == parseInt(value)
+        && parseInt(value) >= 0 && parseInt(value) <= 201) {
         next();
     } else {
         res.sendStatus(400);
