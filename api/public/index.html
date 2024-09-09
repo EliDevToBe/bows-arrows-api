@@ -420,6 +420,7 @@
   </style>
   <link href="stylesheets/screen-2d76de90.css" rel="stylesheet" media="screen" />
   <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
+  <link rel="stylesheet" href="./tailstyle.css">
   <script src="javascripts/all-024da600.js"></script>
 
   <script>
@@ -516,6 +517,31 @@
       <li>🏹 Made with Passion</li>
       <li><a href='https://github.com/EliDevToBe'>❤️ GitHub @ EliDevToBe</a></li>
     </ul>
+
+    <div id="USER INTERACTION" class="text-center flex flex-col">
+      <button id="btnRedeem"
+        class="self-center h-10 text-white hover:bg-green-300 hover:text-black rounded-full border-white border-solid border-2 text-center w-3/4">Redeem
+        API key
+      </button>
+
+      <form id="tokenForm" action=""
+        class="hidden transition-all duration-300 ease-in-out transform opacity-0 scale-95 mt-2 text-center self-center w-3/4">
+        <div>
+          <label for="username" class="text-white">Username* :</label>
+          <input type="text" name="username" id="username" placeholder="Username" required>
+        </div>
+
+        <div>
+          <label for="email" class="text-white">Email* :</label>
+          <input type="email" name="email" id="email" placeholder="artemis@olympia.com">
+        </div>
+
+        <button type="submit"
+          class="mt-2 py-1 text-white border-white rounded-full border-solid border-2 text-center w-2/4">Send</button>
+      </form>
+    </div>
+
+
   </div>
   <div class="page-wrapper">
     <div class="dark-box"></div>
@@ -900,6 +926,7 @@
     <div class="dark-box">
     </div>
   </div>
+  <script src="./javascripts/scripts.js"></script>
 </body>
 
 </html>
