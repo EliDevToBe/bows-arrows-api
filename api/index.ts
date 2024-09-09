@@ -13,6 +13,7 @@ import { onlyGetMethodAllowed } from "./utils/onlyGet";
 import { homeRouter } from "./routes/home";
 import { arrowsRouter } from "./routes/arrows";
 import { brandsRouter } from "./routes/brands";
+import { AuthRouter } from "./routes/test_auth";
 // ========================
 
 // ===== MISC Middlewares =====
@@ -25,7 +26,8 @@ app.disable('x-powered-by');
 // ============================
 
 // ===== Router middlewares =====
-app.use(onlyGetMethodAllowed())
+app.use(onlyGetMethodAllowed());
+app.use(AuthRouter)
 app.use(homeRouter);
 app.use(arrowsRouter);
 app.use(brandsRouter);
