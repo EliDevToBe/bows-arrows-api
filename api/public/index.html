@@ -519,7 +519,7 @@
     <div class="toc-footer flex flex-col h-auto grow">
       <div id="USER INTERACTION" class="text-center flex flex-col">
         <button id="btnRedeem"
-          class="self-center h-10 text-white hover:bg-green-300 hover:text-black rounded-full border-white border-solid border-2 text-center w-3/4">
+          class="shadow-sm hover:shadow-slate-500 hover:shadow-md hover:-translate-y-1 transition-all ease-in-out duration-200 self-center h-10 text-black bg-green-300 hover:bg-green-400 hover:text-white rounded-full border-white border-solid border-2 text-center w-3/4">
           Redeem API key
         </button>
 
@@ -527,14 +527,14 @@
           class="invisible transition-all duration-300 ease-in-out transform opacity-0 scale-95 mt-2 self-center w-3/4">
           <div>
             <label for="username" class="text-white flex flex-row">Username* :</label>
-            <input class="text-center rounded-lg" type="text" name="username" id="username" placeholder="Username"
-              required>
+            <input class="text-center rounded-lg" autocomplete="off" type="text" name="username" id="username"
+              placeholder="Username" required>
           </div>
 
           <div>
             <label for="email" class="text-white flex flex-row">Email* :</label>
-            <input class="text-center rounded-lg" type="email" name="email" id="email" placeholder="Artemis@olympia.com"
-              required>
+            <input class="text-center rounded-lg" autocomplete="off" type="email" name="email" id="email"
+              placeholder="Artemis@olympia.com" required>
           </div>
 
           <ul class="list-none p-0">
@@ -542,7 +542,7 @@
           </ul>
 
           <button type="submit"
-            class="mt-2 py-1 text-white border-white rounded-full border-solid border-2 text-center w-2/4">
+            class="transition-all ease-in-out duration-100 hover:animate-pulse mt-2 py-1 text-white border-white hover:border-yellow-200 hover:text-yellow-200 hover:shadow-sm hover:shadow-white rounded-full border-solid border-2 text-center w-2/4">
             Get Key
           </button>
         </form>
@@ -563,8 +563,8 @@
       <h1 id='introduction'>Introduction</h1>
       <p>Welcome to the Bow&#39;s Arrows API, which is about ... archery ! 😮<br>
         This API is still in development and aim to be as exhaustive as possible.<br>
-        Currently, this API is in a <code>v1.0</code>, you can see some of futur features in the <a
-          href="#roadmap">Roadmap section</a>.</p>
+        Currently, this API is in a <code>v1.0</code>, you can see some of futur features in the <a href="#roadmap"
+          class="underline">Roadmap section</a>.</p>
 
       <aside class="notice">
         You can only access the Bow's Arrows API using the HTTP method &nbsp;&nbsp;&nbsp;<strong>GET</strong>
@@ -581,12 +581,13 @@
 </span></code></pre>
       </div>
       <aside class="success">
-        <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; <a
-          href="https://bows-arrows-api.vercel.app/api">https://bows-arrows-api.vercel.app/api</a>
+        <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://bows-arrows-api.vercel.app/api"
+          class="underline">https://bows-arrows-api.vercel.app/api</a>
       </aside>
 
       <p>The Base URL will greet you with the main endpoints available at the moment.<br>
-        These are <a href="#brands"><strong>Brands</strong></a> and <a href="#arrows"><strong>Arrows</strong></a> for
+        These are <a href="#brands" class="underline"><strong>Brands</strong></a> and <a href="#arrows"
+          class="underline"><strong>Arrows</strong></a> for
         the moment.</p>
       <h1 id='arrows'>Arrows</h1>
       <blockquote>
@@ -686,8 +687,8 @@
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
       </div>
-      <p>This is the endpoint to retrieve an array of <code>Arrow Object</code> following the <a
-          href="#arrow-schema">Arrow Schema</a></p>
+      <p>This is the endpoint to retrieve an array of <code>Arrow Object</code> following the <a href="#arrow-schema"
+          class="underline">Arrow Schema</a></p>
 
       <aside class="success">
         <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; https://bows-arrows-api.vercel.app/api/arrows
@@ -798,7 +799,7 @@
           <tr>
             <td>arrows</td>
             <td>array</td>
-            <td>Array of urls pointing for a <a href="#get-a-specific-arrow">specific arrow</a></td>
+            <td>Array of urls pointing for a <a href="#get-a-specific-arrow" class="underline">specific arrow</a></td>
           </tr>
         </tbody>
       </table>
@@ -825,8 +826,8 @@
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
       </div>
-      <p>This is the endpoint to retrieve an array of <code>Brand Object</code> following the <a
-          href="#brand-schema">Brand Schema</a></p>
+      <p>This is the endpoint to retrieve an array of <code>Brand Object</code> following the <a href="#brand-schema"
+          class="underline">Brand Schema</a></p>
 
       <aside class="success">
         <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; https://bows-arrows-api.vercel.app/api/brands
@@ -916,20 +917,20 @@
 
       <p>The next steps consists of:</p>
 
-      <ul class="list-disc m-2">
-        <li class="m-1">
+      <ul class="*:m-1 list-disc m-2 hover:marker:text-emerald-500">
+        <li>
           <p>Authentication</p>
         </li>
-        <li class="m-1">
+        <li>
           <p>Coffee break</p>
         </li>
-        <li class="m-1">
+        <li>
           <p>Be sure it&#39;s RESTful</p>
         </li>
-        <li class="m-1">
+        <li>
           <p>Adding riser data (v2.0)</p>
         </li>
-        <li class="m-1">
+        <li>
           <p>Adding limbs data (v3.0)</p>
         </li>
       </ul>
