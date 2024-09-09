@@ -5,9 +5,9 @@ btnRedeem.addEventListener("click", (e) => {
     e.preventDefault();
     let isFormVisible = false;
 
-    if (tokenForm.classList.contains("hidden")) {
+    if (tokenForm.classList.contains("invisible")) {
 
-        tokenForm.classList.remove("hidden");
+        tokenForm.classList.remove("invisible");
         isFormVisible = true;
 
         setTimeout(() => {
@@ -23,7 +23,7 @@ btnRedeem.addEventListener("click", (e) => {
 
         isFormVisible = false;
         setTimeout(() => {
-            tokenForm.classList.add("hidden");
+            tokenForm.classList.add("invisible");
 
         }, 300);
 
