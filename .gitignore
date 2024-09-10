@@ -46,3 +46,4 @@ database/
 style/
 __tests__/
 bruno.json
+.env*.local

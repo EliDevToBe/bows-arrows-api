@@ -1,5 +1,38 @@
 const btnRedeem = document.querySelector("#btnRedeem");
 const tokenForm = document.querySelector("#tokenForm");
+const usernameInput = document.querySelector("#username");
+const emailInput = document.querySelector("#email");
+const passwordInput = document.querySelector("#password");
+const errUser = document.querySelector("#errUser");
+const errMail = document.querySelector("#errMail");
+
+const nameContainer = document.querySelector("#nameContainer");
+const mailContainer = document.querySelector("#mailContainer");
+
+const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*\.[a-z]{2,}$/i
+
+// styling with some validation data
+usernameInput.addEventListener("input", (e) => {
+    const isNameValid = !usernameInput.value.match(/\W/);
+
+    if (!isNameValid) {
+        nameContainer.classList.add("not-valid");
+    } else {
+        nameContainer.classList.remove("not-valid");
+    }
+});
+
+emailInput.addEventListener("input", (e) => {
+
+    const isEmailValid = emailRegex.test(emailInput.value)
+
+    if (!isEmailValid) {
+        mailContainer.classList.add("not-valid");
+    } else {
+        mailContainer.classList.remove("not-valid");
+    }
+})
+
 
 btnRedeem.addEventListener("click", (e) => {
     e.preventDefault();
@@ -33,32 +66,43 @@ btnRedeem.addEventListener("click", (e) => {
 })
 
 tokenForm.addEventListener("submit", (e) => {
-    sendData();
-    // e.preventDefault();
+    // Don't prevent and form is send
+    // Manual send is not populating req.body correctly
+    e.preventDefault();
+
+    const isEmailValid = emailRegex.test(emailInput.value);
+    const isNameValid = !usernameInput.value.match(/\W/);
+    const passwordLength = passwordInput.value.length;
+
+    if (isEmailValid && isNameValid && passwordLength >= 8) {
+
+        sendFormData();
+
+    } else {
+        console.log("Not sending FORM")
+        console.log("mail", isEmailValid)
+        console.log("name", isNameValid)
+        console.log("pass length", passwordLength)
+    }
+
 })
 
-async function sendData() {
+async function sendFormData() {
 
     const formData = new FormData(tokenForm);
 
-
-
-    // for (const [key, value] of formData) {
-    //     console.log(`${key}: ${value}\n`);
-    // }
-    // console.log(formData.get("username"))
-
     try {
-        const response = await fetch("/newuser",
+        const response = await fetch("http://localhost:3000/newuser",
             // object to POST
             {
                 method: "POST",
-                body: formData
+                body: formData,
             }
         );
         console.log(response.statusText)
 
     } catch (error) {
         console.log(error)
+        return false
     }
 }
