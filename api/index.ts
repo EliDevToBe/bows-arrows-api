@@ -26,8 +26,8 @@ app.disable('x-powered-by');
 // ============================
 
 // ===== Router middlewares =====
-app.use(onlyGetMethodAllowed());
 app.use(AuthRouter)
+app.use(onlyGetMethodAllowed());
 app.use(homeRouter);
 app.use(arrowsRouter);
 app.use(brandsRouter);

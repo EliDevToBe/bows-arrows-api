@@ -31,3 +31,34 @@ btnRedeem.addEventListener("click", (e) => {
 
     btnRedeem.innerText = !isFormVisible ? "Redeem API Key" : "Hide Form"
 })
+
+tokenForm.addEventListener("submit", (e) => {
+    sendData();
+    // e.preventDefault();
+})
+
+async function sendData() {
+
+    const formData = new FormData(tokenForm);
+
+
+
+    // for (const [key, value] of formData) {
+    //     console.log(`${key}: ${value}\n`);
+    // }
+    // console.log(formData.get("username"))
+
+    try {
+        const response = await fetch("/newuser",
+            // object to POST
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+        console.log(response.statusText)
+
+    } catch (error) {
+        console.log(error)
+    }
+}
