@@ -89,14 +89,32 @@ tokenForm.addEventListener("submit", (e) => {
 
 async function sendFormData() {
 
-    const formData = new FormData(tokenForm);
+    // const formData = new FormData(tokenForm);
+
+    // const formData = {
+    //     username: usernameInput.value,
+    //     email: emailInput.value,
+    //     password: passwordInput.value
+    // };
+
+    const formData = {
+        username: encodeURIComponent(usernameInput.value),
+        email: encodeURIComponent(emailInput.value),
+        password: encodeURIComponent(passwordInput.value)
+    };
 
     try {
         const response = await fetch("http://localhost:3000/newuser",
             // object to POST
             {
                 method: "POST",
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: Object.keys(formData).map(key =>
+                    `${encodeURIComponent(key)}=${formData[key]}`
+                ).join('&')
+
             }
         );
         console.log(response.statusText)
