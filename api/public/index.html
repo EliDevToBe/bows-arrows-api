@@ -1,194 +1,310 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Documentation for the Bow's Arrows API" />
+    <title>Bows's Arrows API</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-<head>
-  <meta charset="utf-8">
-  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Documentation for the Bow's Arrows API">
-  <title>Bows's Arrows API</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="stylesheets/inline-screen.css"
+      media="screen"
+    />
+    <link rel="stylesheet" href="stylesheets/inline-print.css" media="print" />
 
-  <link rel="stylesheet" href="stylesheets/inline-screen.css" media="screen">
-  <link rel="stylesheet" href="stylesheets/inline-print.css" media="print">
+    <link
+      href="stylesheets/screen-2d76de90.css"
+      rel="stylesheet"
+      media="screen"
+    />
+    <link
+      href="stylesheets/print-966d6edc.css"
+      rel="stylesheet"
+      media="print"
+    />
 
-  <link href="stylesheets/screen-2d76de90.css" rel="stylesheet" media="screen" />
-  <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
+    <link rel="stylesheet" href="./tailstyle.css" />
+    <script src="javascripts/all-024da600.js"></script>
 
-  <link rel="stylesheet" href="./tailstyle.css">
-  <script src="javascripts/all-024da600.js"></script>
-
-  <!-- <script>
+    <!-- <script>
     // $(function () { setupCodeCopy(); });
   </script> -->
-</head>
+  </head>
 
-<body class="index" data-languages="[]">
-  <a href="#" id="nav-button">
-    <span>
-      NAV
-      <img src="./images/dotsNavbar.svg">
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="./images/dotsNavbar.svg" />
+      </span>
+    </a>
+    <div class="toc-wrapper flex flex-col">
+      <div class="logo !pl-[25%]">
+        <img src="./images/logo.svg" alt="Logo of a bow and arrow" />
+      </div>
 
-    </span>
-  </a>
-  <div class="toc-wrapper flex flex-col">
-    <div class="logo !pl-[25%]">
-      <img src="./images/logo.svg" alt="Logo of a bow and arrow">
-    </div>
+      <div class="search">
+        <input
+          type="text"
+          class="search"
+          id="input-search"
+          placeholder="Search"
+        />
+      </div>
+      <ul class="search-results"></ul>
 
-    <div class="search">
-      <input type="text" class="search" id="input-search" placeholder="Search">
-    </div>
-    <ul class="search-results"></ul>
-
-
-    <ul id="toc" class="toc-list-h1 max-h-full">
-      <li>
-        <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-        <ul class="toc-list-h2">
-          <li>
-            <a href="#base-url" class="toc-h2 toc-link" data-title="Base URL">Base URL</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#arrows" class="toc-h1 toc-link" data-title="Arrows">Arrows</a>
-        <ul class="toc-list-h2">
-          <li>
-            <a href="#arrow-schema" class="toc-h2 toc-link" data-title="Arrow Schema">Arrow Schema</a>
-          </li>
-          <li>
-            <a href="#get-all-arrows" class="toc-h2 toc-link" data-title="Get All arrows">Get All arrows</a>
-          </li>
-          <li>
-            <a href="#get-a-specific-arrow" class="toc-h2 toc-link" data-title="Get a Specific arrow">Get a Specific
-              arrow</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#brands" class="toc-h1 toc-link" data-title="Brands">Brands</a>
-        <ul class="toc-list-h2">
-          <li>
-            <a href="#brand-schema" class="toc-h2 toc-link" data-title="Brand Schema">Brand Schema</a>
-          </li>
-          <li>
-            <a href="#get-all-brands" class="toc-h2 toc-link" data-title="Get All brands">Get All brands</a>
-          </li>
-          <li>
-            <a href="#get-a-specific-brand" class="toc-h2 toc-link" data-title="Get a Specific brand">Get a Specific
-              brand</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-      </li>
-      <li>
-        <a href="#roadmap" class="toc-h1 toc-link" data-title="Roadmap">Roadmap</a>
-      </li>
-    </ul>
-
-    <div class="toc-footer flex flex-col h-auto grow">
-      <div id="USER INTERACTION" class="text-center flex flex-col">
-        <button id="btnRedeem"
-          class="shadow-sm hover:shadow-slate-500 hover:shadow-md hover:-translate-y-1 transition-all ease-in-out duration-200 self-center h-10 text-black bg-green-300 hover:bg-green-400 hover:text-white rounded-full border-white border-solid border-2 text-center w-3/4">
-          Redeem API key
-        </button>
-
-        <form id="tokenForm" method="POST" action="newuser"
-          class="invisible transition-all duration-300 ease-in-out transform opacity-0 scale-95 mt-2 self-center w-3/4">
-
-          <div id="nameContainer" class="group">
-            <div class="flex flex-row justify-between m-px group-[.not-valid&]:group not-valid">
-              <label id="errUser" for="username" class="text-white flex">Name* :</label>
-              <span class="group-[.not-valid&]:text-red-500 group-[.not-valid&]:visible invisible flex">Name not
-                valid</span>
-            </div>
-
-            <input
-              class="group-[.not-valid&]:ring-red-500 box-border group-[.not-valid&]:ring-2 focus:ring-2 ring-cyan-400 focus:outline-none text-center rounded-lg"
-              autocomplete="off" type="text" name="username" id="username" placeholder="Username" required>
-          </div>
-
-          <div id="mailContainer" class="group">
-            <div class="flex flex-row justify-between m-px group-[.not-valid&]:group not-valid">
-              <label id="errMail" for="email" class="text-white flex">Email* :</label>
-              <span class="group-[.not-valid]:text-red-500 group-[.not-valid&]:visible invisible flex">Email not
-                valid</span>
-            </div>
-
-            <input
-              class="group-[.not-valid&]:ring-red-500 box-border group-[.not-valid&]:ring-2 focus:ring-2 focus:outline-none ring-cyan-400 text-center rounded-lg"
-              autocomplete="off" type="email" name="email" id="email" placeholder="Artemis@olympia.com" required>
-          </div>
-
-          <div>
-            <label for="password" class="text-white flex flex-row">Password* :</label>
-            <input
-              class="box-border focus:invalid:ring-red-500 focus:ring-2 ring-cyan-400 focus:outline-none text-center rounded-lg"
-              minlength="8" autocomplete="off" type="password" name="password" id="password" placeholder="Password"
-              required>
-          </div>
-
-          <ul class="list-none p-0">
-            <li>Required*</li>
+      <ul id="toc" class="toc-list-h1 max-h-full">
+        <li>
+          <a
+            href="#introduction"
+            class="toc-h1 toc-link"
+            data-title="Introduction"
+            >Introduction</a
+          >
+          <ul class="toc-list-h2">
+            <li>
+              <a href="#base-url" class="toc-h2 toc-link" data-title="Base URL"
+                >Base URL</a
+              >
+            </li>
           </ul>
+        </li>
+        <li>
+          <a href="#arrows" class="toc-h1 toc-link" data-title="Arrows"
+            >Arrows</a
+          >
+          <ul class="toc-list-h2">
+            <li>
+              <a
+                href="#arrow-schema"
+                class="toc-h2 toc-link"
+                data-title="Arrow Schema"
+                >Arrow Schema</a
+              >
+            </li>
+            <li>
+              <a
+                href="#get-all-arrows"
+                class="toc-h2 toc-link"
+                data-title="Get All arrows"
+                >Get All arrows</a
+              >
+            </li>
+            <li>
+              <a
+                href="#get-a-specific-arrow"
+                class="toc-h2 toc-link"
+                data-title="Get a Specific arrow"
+                >Get a Specific arrow</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#brands" class="toc-h1 toc-link" data-title="Brands"
+            >Brands</a
+          >
+          <ul class="toc-list-h2">
+            <li>
+              <a
+                href="#brand-schema"
+                class="toc-h2 toc-link"
+                data-title="Brand Schema"
+                >Brand Schema</a
+              >
+            </li>
+            <li>
+              <a
+                href="#get-all-brands"
+                class="toc-h2 toc-link"
+                data-title="Get All brands"
+                >Get All brands</a
+              >
+            </li>
+            <li>
+              <a
+                href="#get-a-specific-brand"
+                class="toc-h2 toc-link"
+                data-title="Get a Specific brand"
+                >Get a Specific brand</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#errors" class="toc-h1 toc-link" data-title="Errors"
+            >Errors</a
+          >
+        </li>
+        <li>
+          <a href="#roadmap" class="toc-h1 toc-link" data-title="Roadmap"
+            >Roadmap</a
+          >
+        </li>
+      </ul>
 
-          <button type="submit"
-            class="transition-all ease-in-out duration-100 hover:animate-pulse mt-2 py-1 text-white border-white hover:border-yellow-200 hover:text-yellow-200 hover:shadow-sm hover:shadow-white rounded-full border-solid border-2 text-center w-2/4">
-            Get Key
+      <div class="toc-footer flex flex-col h-auto grow">
+        <div id="USER INTERACTION" class="text-center flex flex-col">
+          <button
+            id="btnRedeem"
+            class="shadow-sm hover:shadow-slate-500 hover:shadow-md hover:-translate-y-1 transition-all ease-in-out duration-200 self-center h-10 text-black bg-green-300 hover:bg-green-400 hover:text-white rounded-full border-white border-solid border-2 text-center w-3/4"
+          >
+            Redeem API key
           </button>
-        </form>
-      </div>
 
-      <div class="justify-end h-auto flex flex-col grow">
-        <ul class="list-none p-0">
-          <li>🏹 Made with Passion</li>
-          <li><a href='https://github.com/EliDevToBe'>❤️ GitHub @ EliDevToBe</a></li>
-        </ul>
+          <form
+            id="tokenForm"
+            method="POST"
+            action="newuser"
+            class="invisible transition-all duration-300 ease-in-out transform opacity-0 scale-95 mt-2 self-center w-3/4"
+          >
+            <div id="nameContainer" class="group">
+              <div
+                class="flex flex-row justify-between m-px group-[.not-valid&]:group not-valid"
+              >
+                <label id="errUser" for="username" class="text-white flex"
+                  >Name* :</label
+                >
+                <span
+                  class="group-[.not-valid&]:text-red-500 group-[.not-valid&]:visible invisible flex"
+                  >Name not valid</span
+                >
+              </div>
+
+              <input
+                class="group-[.not-valid&]:ring-red-500 box-border group-[.not-valid&]:ring-2 focus:ring-2 ring-cyan-400 focus:outline-none text-center rounded-lg"
+                autocomplete="off"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+                required
+              />
+            </div>
+
+            <div id="mailContainer" class="group">
+              <div
+                class="flex flex-row justify-between m-px group-[.not-valid&]:group not-valid"
+              >
+                <label id="errMail" for="email" class="text-white flex"
+                  >Email* :</label
+                >
+                <span
+                  class="group-[.not-valid]:text-red-500 group-[.not-valid&]:visible invisible flex"
+                  >Email not valid</span
+                >
+              </div>
+
+              <input
+                class="group-[.not-valid&]:ring-red-500 box-border group-[.not-valid&]:ring-2 focus:ring-2 focus:outline-none ring-cyan-400 text-center rounded-lg"
+                autocomplete="off"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Artemis@olympia.com"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="password" class="text-white flex flex-row"
+                >Password* :</label
+              >
+              <input
+                class="box-border focus:invalid:ring-red-500 focus:ring-2 ring-cyan-400 focus:outline-none text-center rounded-lg"
+                minlength="8"
+                autocomplete="off"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <ul class="list-none p-0">
+              <li>Required*</li>
+            </ul>
+
+            <button
+              type="submit"
+              class="transition-all ease-in-out duration-100 hover:animate-pulse mt-2 py-1 text-white border-white hover:border-yellow-200 hover:text-yellow-200 hover:shadow-sm hover:shadow-white rounded-full border-solid border-2 text-center w-2/4"
+            >
+              Get Key
+            </button>
+          </form>
+        </div>
+
+        <div class="justify-end h-auto flex flex-col grow">
+          <ul class="list-none p-0">
+            <li>🏹 Made with Passion</li>
+            <li>
+              <a href="https://github.com/EliDevToBe">❤️ GitHub @ EliDevToBe</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+        <p>
+          Welcome to the Bow&#39;s Arrows API, which is about ... archery !
+          😮<br />
+          This API is still in development and aim to be as exhaustive as
+          possible.<br />
+          Currently, this API is in a <code>v1.0</code>, you can see some of
+          futur features in the
+          <a href="#roadmap" class="underline">Roadmap section</a>.
+        </p>
 
-  </div>
-  <div class="page-wrapper">
-    <div class="dark-box"></div>
-    <div class="content">
-      <h1 id='introduction'>Introduction</h1>
-      <p>Welcome to the Bow&#39;s Arrows API, which is about ... archery ! 😮<br>
-        This API is still in development and aim to be as exhaustive as possible.<br>
-        Currently, this API is in a <code>v1.0</code>, you can see some of futur features in the <a href="#roadmap"
-          class="underline">Roadmap section</a>.</p>
-
-      <aside class="notice">
-        You can only access the Bow's Arrows API using the HTTP method &nbsp;&nbsp;&nbsp;<strong>GET</strong>
-      </aside>
-      <h2 id='base-url'>Base URL</h2>
-      <blockquote>
-        <p>Base URL response</p>
-      </blockquote>
-      <div class="highlight">
-        <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        <aside class="notice">
+          You can only access the Bow's Arrows API using the HTTP method
+          &nbsp;&nbsp;&nbsp;<strong>GET</strong>
+        </aside>
+        <h2 id="base-url">Base URL</h2>
+        <blockquote>
+          <p>Base URL response</p>
+        </blockquote>
+        <div class="highlight">
+          <pre
+            class="highlight json tab-json"
+          ><code><span class="p">{</span><span class="w">
   </span><span class="nl">"brands"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bows-arrows-api.vercel.app/api/brands"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"arrows"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bows-arrows-api.vercel.app/api/arrows"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-      </div>
-      <aside class="success">
-        <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://bows-arrows-api.vercel.app/api"
-          class="underline">https://bows-arrows-api.vercel.app/api</a>
-      </aside>
+        </div>
+        <aside class="success">
+          <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://bows-arrows-api.vercel.app/api" class="underline"
+            >https://bows-arrows-api.vercel.app/api</a
+          >
+        </aside>
 
-      <p>The Base URL will greet you with the main endpoints available at the moment.<br>
-        These are <a href="#brands" class="underline"><strong>Brands</strong></a> and <a href="#arrows"
-          class="underline"><strong>Arrows</strong></a> for
-        the moment.</p>
-      <h1 id='arrows'>Arrows</h1>
-      <blockquote>
-        <p>Any Arrow Object</p>
-      </blockquote>
-      <div class="highlight">
-        <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        <p>
+          The Base URL will greet you with the main endpoints available at the
+          moment.<br />
+          These are
+          <a href="#brands" class="underline"><strong>Brands</strong></a> and
+          <a href="#arrows" class="underline"><strong>Arrows</strong></a> for
+          the moment.
+        </p>
+        <h1 id="arrows">Arrows</h1>
+        <blockquote>
+          <p>Any Arrow Object</p>
+        </blockquote>
+        <div class="highlight">
+          <pre
+            class="highlight json tab-json"
+          ><code><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some model name"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -208,62 +324,70 @@
   </span><span class="nl">"spinesUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link-to-all-spines-available"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-      </div>
-      <p>This is the endpoint to retrieve all arrows in a JSON format.<br>
-        An arrow is considered an object and all <code>Arrow Object</code> follows the arrow schema.</p>
-      <h3 id='arrow-schema'>Arrow Schema</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>id</td>
-            <td>int</td>
-            <td>Arrow id</td>
-          </tr>
-          <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>Model name of the arrow</td>
-          </tr>
-          <tr>
-            <td>brand</td>
-            <td>object</td>
-            <td>Name and endpoint of the brand</td>
-          </tr>
-          <tr>
-            <td>discipline</td>
-            <td>string</td>
-            <td>Indicating for which discipline the arrow is best used</td>
-          </tr>
-          <tr>
-            <td>material</td>
-            <td>object</td>
-            <td><em>Name</em> and <em>Quality</em> of the material</td>
-          </tr>
-          <tr>
-            <td>tolerances</td>
-            <td>object</td>
-            <td>About <em>Grain per inch</em>, <em>Straightness</em>, <em>Spine</em></td>
-          </tr>
-          <tr>
-            <td>spinesUrl</td>
-            <td>string</td>
-            <td>Endpoint for retrieving all spines for this arrow</td>
-          </tr>
-        </tbody>
-      </table>
-      <h2 id='get-all-arrows'>Get All arrows</h2>
-      <blockquote>
-        <p>Array of Arrow Object as response</p>
-      </blockquote>
-      <div class="highlight">
-        <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w"> 
+        </div>
+        <p>
+          This is the endpoint to retrieve all arrows in a JSON format.<br />
+          An arrow is considered an object and all
+          <code>Arrow Object</code> follows the arrow schema.
+        </p>
+        <h3 id="arrow-schema">Arrow Schema</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>id</td>
+              <td>int</td>
+              <td>Arrow id</td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>string</td>
+              <td>Model name of the arrow</td>
+            </tr>
+            <tr>
+              <td>brand</td>
+              <td>object</td>
+              <td>Name and endpoint of the brand</td>
+            </tr>
+            <tr>
+              <td>discipline</td>
+              <td>string</td>
+              <td>Indicating for which discipline the arrow is best used</td>
+            </tr>
+            <tr>
+              <td>material</td>
+              <td>object</td>
+              <td><em>Name</em> and <em>Quality</em> of the material</td>
+            </tr>
+            <tr>
+              <td>tolerances</td>
+              <td>object</td>
+              <td>
+                About <em>Grain per inch</em>, <em>Straightness</em>,
+                <em>Spine</em>
+              </td>
+            </tr>
+            <tr>
+              <td>spinesUrl</td>
+              <td>string</td>
+              <td>Endpoint for retrieving all spines for this arrow</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="get-all-arrows">Get All arrows</h2>
+        <blockquote>
+          <p>Array of Arrow Object as response</p>
+        </blockquote>
+        <div class="highlight">
+          <pre
+            class="highlight json tab-json"
+          ><code><span class="p">[</span><span class="w"> 
   </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
   </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w">
@@ -280,19 +404,30 @@
   </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-      </div>
-      <p>This is the endpoint to retrieve an array of <code>Arrow Object</code> following the <a href="#arrow-schema"
-          class="underline">Arrow Schema</a></p>
+        </div>
+        <p>
+          This is the endpoint to retrieve an array of
+          <code>Arrow Object</code> following the
+          <a href="#arrow-schema" class="underline">Arrow Schema</a>
+        </p>
 
-      <aside class="success">
-        <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; https://bows-arrows-api.vercel.app/api/arrows
-      </aside>
-      <h2 id='get-a-specific-arrow'>Get a Specific arrow</h2>
-      <blockquote>
-        <p>Response using &lt;BaseUrl&gt;/arrows/182</p>
-      </blockquote>
-      <div class="highlight">
-        <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        <aside class="success">
+          <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+          <a
+            href="https://bows-arrows-api.vercel.app/api/arrows"
+            class="underline"
+          >
+            https://bows-arrows-api.vercel.app/api/arrows
+          </a>
+        </aside>
+        <h2 id="get-a-specific-arrow">Get a Specific arrow</h2>
+        <blockquote>
+          <p>Response using &lt;BaseUrl&gt;/arrows/182</p>
+        </blockquote>
+        <div class="highlight">
+          <pre
+            class="highlight json tab-json"
+          ><code><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">182</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tenpro"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -312,40 +447,59 @@
   </span><span class="nl">"spinesUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bows-arrows-api.vercel.app/api/arrows/182/spines"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-      </div>
-      <p>If you want to retrieve a specific arrow, an <code>id</code> parameter is required.</p>
+        </div>
+        <p>
+          If you want to retrieve a specific arrow, an <code>id</code> parameter
+          is required.
+        </p>
 
-      <aside class="success">
-        <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; https://bows-arrows-api.vercel.app/api/arrows/&lt;ID&gt;
-      </aside>
-      <h3 id='url-parameter'>URL Parameter</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>ID</td>
-            <td>The <strong>required</strong> id to retrieve</td>
-          </tr>
-        </tbody>
-      </table>
-      <h3 id='get-all-spines-associated'>Get All spines associated</h3>
-      <p>Simply adding <code>/spines</code> at the end of a specific arrow retrieves all the spines possible associated.
-      </p>
+        <aside class="success">
+          <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+          <a
+            href=" https://bows-arrows-api.vercel.app/api/arrows/182"
+            class="underline"
+          >
+            https://bows-arrows-api.vercel.app/api/arrows/&lt;ID&gt;
+          </a>
+        </aside>
+        <h3 id="url-parameter">URL Parameter</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ID</td>
+              <td>The <strong>required</strong> id to retrieve</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 id="get-all-spines-associated">Get All spines associated</h3>
+        <p>
+          Simply adding <code>/spines</code> at the end of a specific arrow
+          retrieves all the spines possible associated.
+        </p>
 
-      <aside class="notice">
-        <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; https://bows-arrows-api.vercel.app/api/arrows/&lt;ID&gt;/spines
-      </aside>
-      <h1 id='brands'>Brands</h1>
-      <blockquote>
-        <p>Any Brand Object</p>
-      </blockquote>
-      <div class="highlight">
-        <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        <aside class="notice">
+          <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+          <a
+            href="https://bows-arrows-api.vercel.app/api/arrows/182/spines"
+            class="underline"
+          >
+            https://bows-arrows-api.vercel.app/api/arrows/&lt;ID&gt;/spines
+          </a>
+        </aside>
+        <h1 id="brands">Brands</h1>
+        <blockquote>
+          <p>Any Brand Object</p>
+        </blockquote>
+        <div class="highlight">
+          <pre
+            class="highlight json tab-json"
+          ><code><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Brand"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"origin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MARS"</span><span class="p">,</span><span class="w">
@@ -357,52 +511,62 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-      </div>
-      <p>This is the endpoint to retrieve all brands in a JSON format.<br>
-        A brand is considered an object and all <code>Brand Object</code> follows the brand schema.</p>
-      <h3 id='brand-schema'>Brand Schema</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>id</td>
-            <td>int</td>
-            <td>ID</td>
-          </tr>
-          <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>Brand name</td>
-          </tr>
-          <tr>
-            <td>origin</td>
-            <td>string</td>
-            <td>Brand&#39;s country</td>
-          </tr>
-          <tr>
-            <td>creationDate</td>
-            <td>int</td>
-            <td>Creation date of the brand, if known</td>
-          </tr>
-          <tr>
-            <td>arrows</td>
-            <td>array</td>
-            <td>Array of urls pointing for a <a href="#get-a-specific-arrow" class="underline">specific arrow</a></td>
-          </tr>
-        </tbody>
-      </table>
-      <h2 id='get-all-brands'>Get All brands</h2>
-      <blockquote>
-        <p>Array of Brand Object as response</p>
-      </blockquote>
-      <div class="highlight">
-        <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w"> 
+        </div>
+        <p>
+          This is the endpoint to retrieve all brands in a JSON format.<br />
+          A brand is considered an object and all
+          <code>Brand Object</code> follows the brand schema.
+        </p>
+        <h3 id="brand-schema">Brand Schema</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>id</td>
+              <td>int</td>
+              <td>ID</td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>string</td>
+              <td>Brand name</td>
+            </tr>
+            <tr>
+              <td>origin</td>
+              <td>string</td>
+              <td>Brand&#39;s country</td>
+            </tr>
+            <tr>
+              <td>creationDate</td>
+              <td>int</td>
+              <td>Creation date of the brand, if known</td>
+            </tr>
+            <tr>
+              <td>arrows</td>
+              <td>array</td>
+              <td>
+                Array of urls pointing for a
+                <a href="#get-a-specific-arrow" class="underline"
+                  >specific arrow</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="get-all-brands">Get All brands</h2>
+        <blockquote>
+          <p>Array of Brand Object as response</p>
+        </blockquote>
+        <div class="highlight">
+          <pre
+            class="highlight json tab-json"
+          ><code><span class="p">[</span><span class="w"> 
   </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
   </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
@@ -419,19 +583,30 @@
   </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-      </div>
-      <p>This is the endpoint to retrieve an array of <code>Brand Object</code> following the <a href="#brand-schema"
-          class="underline">Brand Schema</a></p>
+        </div>
+        <p>
+          This is the endpoint to retrieve an array of
+          <code>Brand Object</code> following the
+          <a href="#brand-schema" class="underline">Brand Schema</a>
+        </p>
 
-      <aside class="success">
-        <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; https://bows-arrows-api.vercel.app/api/brands
-      </aside>
-      <h2 id='get-a-specific-brand'>Get a Specific brand</h2>
-      <blockquote>
-        <p>Response using &lt;BaseUrl&gt;/brands/8</p>
-      </blockquote>
-      <div class="highlight">
-        <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        <aside class="success">
+          <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+          <a
+            href="https://bows-arrows-api.vercel.app/api/brands"
+            class="underline"
+          >
+            https://bows-arrows-api.vercel.app/api/brands
+          </a>
+        </aside>
+        <h2 id="get-a-specific-brand">Get a Specific brand</h2>
+        <blockquote>
+          <p>Response using &lt;BaseUrl&gt;/brands/8</p>
+        </blockquote>
+        <div class="highlight">
+          <pre
+            class="highlight json tab-json"
+          ><code><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fivics usa"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"origin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
@@ -445,97 +620,115 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-      </div>
-      <p>If you want to retrieve a specific brand, an <code>id</code> parameter is required.</p>
+        </div>
+        <p>
+          If you want to retrieve a specific brand, an <code>id</code> parameter
+          is required.
+        </p>
 
-      <aside class="success">
-        <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp; https://bows-arrows-api.vercel.app/api/brands/&lt;ID&gt;
-      </aside>
-      <h3 id='url-parameter'>URL Parameter</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>ID</td>
-            <td>The <strong>required</strong> id to retrieve</td>
-          </tr>
-        </tbody>
-      </table>
-      <h1 id='errors'>Errors</h1>
-      <blockquote>
-        <p>What to expect when not using a GET request</p>
-      </blockquote>
-      <div class="highlight">
-        <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+        <aside class="success">
+          <strong>GET</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+          <a
+            href="https://bows-arrows-api.vercel.app/api/brands/8"
+            class="underline"
+          >
+            https://bows-arrows-api.vercel.app/api/brands/&lt;ID&gt;
+          </a>
+        </aside>
+        <h3 id="url-parameter">URL Parameter</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ID</td>
+              <td>The <strong>required</strong> id to retrieve</td>
+            </tr>
+          </tbody>
+        </table>
+        <h1 id="errors">Errors</h1>
+        <blockquote>
+          <p>What to expect when not using a GET request</p>
+        </blockquote>
+        <div class="highlight">
+          <pre
+            class="highlight json tab-json"
+          ><code><span class="p">{</span><span class="w">
   </span><span class="nl">"oops"</span><span class="p">:</span><span class="w"> </span><span class="s2">"There is nothing here."</span><span class="p">,</span><span class="w">
   </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Method Not Allowed"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+        </div>
+        <p>
+          When accessing the API with another HTTP method other than
+          <strong>GET</strong>, you will receive a <code>405</code> code error
+          with a visible JSON summarizing what went wrong.
+        </p>
+
+        <p>The Bow&#39;s Arrows API uses the following error codes:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Error Code</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>400</td>
+              <td>Bad Request -&gt; Your request is invalid.</td>
+            </tr>
+            <tr>
+              <td>405</td>
+              <td>
+                Method Not Allowed -&gt; You tried to access the API with an
+                invalid method.
+              </td>
+            </tr>
+            <tr>
+              <td>500</td>
+              <td>
+                Internal Server Error -&gt; We had a problem with our server.
+                Try again later.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h1 id="roadmap">Roadmap</h1>
+        <p>
+          In the near future, I will make sure that the API is fully RESTful.
+        </p>
+
+        <p>The next steps consists of:</p>
+
+        <ul class="*:m-1 list-disc m-2 hover:marker:text-emerald-500">
+          <li>
+            <p>Authentication</p>
+          </li>
+          <li>
+            <p>Coffee break</p>
+          </li>
+          <li>
+            <p>Be sure it&#39;s RESTful</p>
+          </li>
+          <li>
+            <p>Adding riser data (v2.0)</p>
+          </li>
+          <li>
+            <p>Adding limbs data (v3.0)</p>
+          </li>
+        </ul>
+
+        <div class="mb-[400px]"></div>
       </div>
-      <p>When accessing the API with another HTTP method other than <strong>GET</strong>, you will receive a
-        <code>405</code> code error with a visible JSON summarizing what went wrong.
-      </p>
-
-      <p>The Bow&#39;s Arrows API uses the following error codes:</p>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Error Code</th>
-            <th>Meaning</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>400</td>
-            <td>Bad Request -&gt; Your request is invalid.</td>
-          </tr>
-          <tr>
-            <td>405</td>
-            <td>Method Not Allowed -&gt; You tried to access the API with an invalid method.</td>
-          </tr>
-          <tr>
-            <td>500</td>
-            <td>Internal Server Error -&gt; We had a problem with our server. Try again later.</td>
-          </tr>
-        </tbody>
-      </table>
-      <h1 id='roadmap'>Roadmap</h1>
-      <p>In the near future, I will make sure that the API is fully RESTful. </p>
-
-      <p>The next steps consists of:</p>
-
-      <ul class="*:m-1 list-disc m-2 hover:marker:text-emerald-500">
-        <li>
-          <p>Authentication</p>
-        </li>
-        <li>
-          <p>Coffee break</p>
-        </li>
-        <li>
-          <p>Be sure it&#39;s RESTful</p>
-        </li>
-        <li>
-          <p>Adding riser data (v2.0)</p>
-        </li>
-        <li>
-          <p>Adding limbs data (v3.0)</p>
-        </li>
-      </ul>
-
-      <div class="mb-[400px]"></div>
-
+      <div class="dark-box"></div>
     </div>
-    <div class="dark-box">
-    </div>
-  </div>
-  <script src="./javascripts/scripts.js"></script>
-</body>
-
+    <script src="./javascripts/scripts.js"></script>
+  </body>
 </html>
