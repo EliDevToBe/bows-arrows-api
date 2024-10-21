@@ -11,12 +11,13 @@ const { Client } = pg;
 noSleepRouter.route("/nosleep")
     .all(async (req, res, next) => {
 
-        const client = new Client(connectionString);
+        const client = new Client({ connectionString });
 
         try {
+            await client.connect();
             const noSleep = await client.query("SELECT NOW()");
 
-            res.end();
+            res.json("ok");
             return
 
         } catch (error) {
@@ -33,4 +34,4 @@ async function pleaseDontSleep() {
     }, 518400000)
 
 }
-// pleaseDontSleep();
+pleaseDontSleep();

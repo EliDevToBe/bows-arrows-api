@@ -117,7 +117,8 @@ async function sendFormData() {
 
             }
         );
-        console.log(response.statusText)
+        console.log(response.headers.get("authorization"))
+
 
     } catch (error) {
         console.log(error)
